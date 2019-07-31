@@ -39,6 +39,7 @@ import { AdminTaskEditComponent } from "./admin/admin-task-edit/admin-task-edit.
   providers: [
     QuestState
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [QuestsComponent]
 })
 export class AppModule { }
