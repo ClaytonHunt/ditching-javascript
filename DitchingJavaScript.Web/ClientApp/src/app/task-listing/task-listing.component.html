@@ -1,0 +1,19 @@
+<ng-container *ngIf="quest">
+  <h1>{{quest.name}}</h1>
+
+  <ng-container *ngIf="quest.description">
+    <div>{{quest.description}}</div>
+    <div class="objectives">Objectives</div>
+  </ng-container>
+
+<ul>
+  <li *ngFor="let task of quest.tasks">
+    <a [class.active]="questState.isCurrentTask(task)"
+       [class.complete]="task.isCompleted"
+       (click)="questState.toggleTask(task)"
+       (mouseover)="questState.selectTask(task)">
+      {{task.name}}
+    </a>
+  </li>
+</ul>
+</ng-container>

@@ -1,0 +1,14 @@
+<div class="quest-list">
+  <div class="quest-entry"
+       *ngFor="let q of questState.quests | async"
+       [class.active]="questState.isCurrentQuest(q)">
+    <span class="title">{{q.name}}</span>
+    <div class="actions">
+      <button type="button" (click)="questState.selectQuest(q)">Edit</button>
+      <button type="button" (click)="questState.deleteQuest(q)">Delete</button>
+    </div>
+  </div>
+  <div class="actions">
+    <button type="button" (click)="createNewQuest()">New Quest</button>
+  </div>
+</div>

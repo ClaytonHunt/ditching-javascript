@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DitchingJavaScript.Web</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root>
+    <canvas id="loading" width="1600" height="900"></canvas>
+    <div class="loading-text">
+      Are you tired of framework fatigue? Has the constant flow of new JavaScript libraries got you down? Well then, have I got news for you! With Blazor, you can have all the bleeding edge technology without learning anything you don't already know! You get WebAssembly, Isomorphic Code, Single Page Application, the list goes on! Blazor is a new framework for writing Single Page Applications (SPAs) in C# using the .Net Framework. In this talk I will explain what Blazor is and how it works. I will then walk through an example of how to use Blazor and replace that old javascript app.
+    </div>
+    <script>
+            (function () {
+                var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+                window.requestAnimationFrame = requestAnimationFrame;
+            })();
+
+            var canvas = document.getElementById("loading"),
+                ctx = canvas.getContext("2d"),
+                fps = 60,
+                interval = 1000 / fps,
+                lastTime = (new Date()).getTime(),
+                currentTime = 0,
+                delta = 0,
+                finished = false;
+
+            onRemove(canvas, () => {
+                finished = true;
+            });
+
+            var parts = [],
+                minSpawnTime = 300,
+                lastTime = new Date().getTime(),
+                maxLifeTime = 15000,
+                emitterX = -150,
+                emitterY = canvas.height +50,
+                smokeImage = new Image(),
+                blazorImage = new Image();
+
+            blazorImage.src = "img/blazor_logo.png";
+
+            function spawn() {
+                if (new Date().getTime() > lastTime + minSpawnTime) {
+                    lastTime = new Date().getTime();
+                    parts.push(new smoke((emitterX + (Math.random() * 500)), emitterY));
+                }
+            }
+
+            function render() {
+                if (!finished) requestAnimationFrame(render);
+
+                currentTime = (new Date()).getTime();
+                delta = (currentTime - lastTime);
+
+                if (delta > interval) {
+
+                    var len = parts.length;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(blazorImage, 0, 150, Math.min(1280, canvas.width * .7), Math.min(720, (canvas.width * .7 / 16 * 9)));
+                    ctx.restore();
+
+                    while (len--) {
+                        if (parts[len].y < 0 || parts[len].lifeTime > maxLifeTime) {
+                            parts.splice(len, 1);
+                        } else {
+                            parts[len].update();
+
+                            ctx.save();
+                            var offsetX = -parts[len].size / 2,
+                                offsetY = -parts[len].size / 2;
+
+                            ctx.translate(parts[len].x - offsetX, parts[len].y - offsetY);
+                            ctx.rotate(parts[len].angle / 180 * Math.PI);
+                            ctx.globalAlpha = parts[len].alpha;
+                            ctx.drawImage(smokeImage, offsetX, offsetY, parts[len].size, parts[len].size);
+                            ctx.restore();
+                        }
+                    }
+                    spawn();
+                }
+            }
+
+            function smoke(x, y, index) {
+                this.x = x;
+                this.y = y;
+
+                this.size = 1;
+                this.startSize = 1 * 60;
+                this.endSize = 4 * 60;
+
+                this.angle = Math.random() * 359;
+
+                this.startLife = new Date().getTime();
+                this.lifeTime = 0;
+
+                this.velY = -3.5 * (Math.floor(Math.random() * 3) / 4);
+                this.velX = (Math.floor(Math.random() * (-6) + 3) / 8);
+            }
+
+            smoke.prototype.update = function () {
+                this.lifeTime = new Date().getTime() - this.startLife;
+                this.angle += 0.2;
+
+                var lifePerc = ((this.lifeTime / maxLifeTime) * 100);
+
+                this.size = this.startSize + ((this.endSize - this.startSize) * lifePerc * .1);
+
+                this.alpha = .5 - (lifePerc * .01);
+                this.alpha = Math.max(this.alpha, 0);
+
+                this.x += this.velX;
+                this.y += this.velY;
+            }
+
+            smokeImage.src = "img/smoke.png";
+            smokeImage.onload = function () {
+                render();
+            }
+
+            window.onresize = resizeMe;
+            window.onload = resizeMe;
+            function resizeMe() {
+                canvas.width = 1600;
+                canvas.height = 900;
+            }
+
+            function onRemove(element, onDetachCallback) {
+                var observer = new MutationObserver(function () {
+                    function isDetached(el) {
+                        if (el.parentNode === document) {
+                            return false;
+                        } else if (el.parentNode === null) {
+                            return true;
+                        } else {
+                            return isDetached(el.parentNode);
+                        }
+                    }
+
+                    if (isDetached(element)) {
+                        observer.disconnect();
+                        onDetachCallback();
+                    }
+                });
+
+                observer.observe(document, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+    </script>
+  </app-root>
+</body>
+</html>

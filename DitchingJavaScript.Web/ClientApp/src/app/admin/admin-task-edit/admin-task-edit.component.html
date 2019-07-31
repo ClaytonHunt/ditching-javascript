@@ -1,0 +1,11 @@
+<div class="task-edit">
+  <h2>Task Details</h2>
+  <div class="input-group">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="questState.currentTask.name" />
+  </div>
+  <div class="actions">
+    <button type="button" (click)="questState.saveTask(questState.currentTask)">Save</button>
+    <button type="button" (click)="questState.selectTask(questState.currentTask)">Reset</button>
+  </div>
+</div>

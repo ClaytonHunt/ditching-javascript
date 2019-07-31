@@ -1,0 +1,443 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #E01A76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+@font-face {
+  font-family: "Futura Medium Condensed";
+  src: url(/css/futura_condensed_medium-webfont.woff2) format("woff2"), url(/css/futura_condensed_medium-webfont.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Futura Medium Condensed";
+  color: rgba(255,255,255, .8);
+  background-color: rgb(15,15,15);
+}
+
+#loading {
+  position: absolute;
+  width: calc(100vw - 4px);
+  height: calc(100vh - 4px);
+}
+
+.loading-text {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: 30%;
+  font-size: 36px;
+}
+
+ul {
+  list-style: none;
+
+  li {
+    cursor: pointer;
+  }
+}
+
+.background {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background: url(/img/mountains.jpg) no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(3px);
+}
+
+.foreground {
+  position: relative;
+  z-index: 100;
+  margin: 10px;
+  padding: 10px;
+
+  nav {
+    position: relative;
+    height: 64px;
+    margin-left: 200px;
+    margin-right: 200px;
+    padding: 10px;
+    background: rgba(0,0,0,.8);
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid rgba(255,255,255,.7);
+    box-shadow: inset 0 3px 0 rgba(255,255,255,.7), 0 3px 0 rgba(0,0,0,.7);
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -50px;
+      width: 50px;
+      height: 67px;
+      background: url(/img/SkyrimMenuEnds.png);
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: -3px;
+      right: -50px;
+      width: 50px;
+      height: 67px;
+      background: url(/img/SkyrimMenuEnds.png);
+      transform: rotateY(180deg);
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      text-transform: uppercase;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        display: inline-block;
+        margin-left: 55px;
+        margin-right: 55px;
+      }
+    }
+
+    a, a:visited {
+      position: relative;
+      font-size: 36px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+
+      &.active, &:hover {
+        color: white;
+        text-decoration: none;
+      }
+
+      &.active {
+        &:before {
+          position: absolute;
+          content: "";
+          width: 28px;
+          height: 29px;
+          top: 8px;
+          left: -50px;
+          background-image: url("/img/task-pointer.png");
+          background-size: cover;
+        }
+
+        &:after {
+          position: absolute;
+          content: "";
+          width: 28px;
+          height: 29px;
+          top: 8px;
+          right: -50px;
+          background-image: url("/img/task-pointer.png");
+          background-size: cover;
+          transform: rotateY(180deg);
+        }
+      }
+    }
+  }
+
+  button {
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 7px;
+    background: transparent;
+    border: 3px solid gray;
+    border-radius: 10px;
+    font-size: 24px;
+    color: rgba(255,255,255,.4);
+    outline: 0;
+
+    &:hover {
+      color: white;
+      border-color: white;
+    }
+  }
+
+  label {
+    display: inline-block;
+    text-transform: uppercase;
+  }
+
+  input, textarea {
+    display: inline-block;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 7px;
+    background: transparent;
+    border: 3px solid gray;
+    border-radius: 10px;
+    font-size: 24px;
+    color: rgba(255,255,255,.4);
+    outline: 0;
+
+    &:focus {
+      color: white;
+      border-color: white;
+    }
+  }
+
+  textarea {
+    height: 150px;
+  }
+
+  .input-group {
+    display: grid;
+    grid-template-areas: "label input";
+    grid-template-columns: 30% auto;
+    text-align: left;
+    padding: 15px;
+    padding-left: 55px;
+  }
+
+  main quests, main admin {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    min-width: 1264px;
+    height: calc(100vh - 120px);
+    overflow: auto;
+    margin-top: 10px;
+    background: rgba(0,0,0,.8);
+    border: 3px solid transparent;
+    box-shadow: 3px 3px 0 0 rgba(255,255,255,.7) inset, -3px -3px 0 0 rgba(255,255,255, .7) inset;
+    color: white;
+    font-size: 36px;
+
+    h1, h2 {
+      display: inline-block;
+      position: relative;
+      margin-left: 160px;
+      margin-right: 160px;
+      font-size: 40px;
+      font-weight: normal;
+      text-transform: uppercase;
+
+      &:before {
+        position: absolute;
+        content: "";
+        top: -10px;
+        left: -180px;
+        width: 170px;
+        height: 60px;
+        background-image: url("/img/title-flourish.png");
+        background-size: cover;
+      }
+
+      &:after {
+        position: absolute;
+        content: "";
+        top: -10px;
+        right: -180px;
+        width: 170px;
+        height: 60px;
+        background-image: url("/img/title-flourish.png");
+        background-size: cover;
+        transform: rotateY(180deg);
+      }
+    }
+
+    h2 {
+      &:before, &:after {
+        top: 3px;
+        height: 39px;
+        background-image: url("/img/title-flourish-2.png");
+      }
+    }
+
+    .left-nav {
+      min-width: 224px;
+      border-right: 3px solid gray;
+      padding: 10px;
+      margin: 3px;
+      text-align: right;
+      text-transform: uppercase;
+      padding-left: 20px;
+      padding-right: 20px;
+
+      a {
+        position: relative;
+        display: inline-block;
+        color: gray;
+        margin-right: 25px;
+
+        &:hover, &.active {
+          color: white;
+        }
+
+        &.working {
+          &:hover, &.active {
+            &:after {
+              filter: alpha(1);
+            }
+          }
+
+          &:after {
+            position: absolute;
+            content: "";
+            width: 23px;
+            height: 23.5px;
+            top: 10px;
+            right: -25px;
+            background-image: url("/img/task-pointer.png");
+            background-size: cover;
+            filter: alpha(.5);
+          }
+        }
+      }
+
+      ul {
+        width: 100%;
+
+        li {
+          text-align: end;
+          padding-right: 30px;
+        }
+      }
+
+      .completed-quests {
+        a {
+          color: rgba(255,255,255,.4);
+
+          &:hover, &.active {
+            color: rgba(255,255,255,.6);
+          }
+
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .content {
+      min-width: 984px;
+      border-left: 3px solid gray;
+      padding: 10px;
+      margin: 3px;
+      text-align: center;
+      overflow-x: hidden;
+      color: rgba(255,255,255,.7);
+
+      ul li {
+        position: relative;
+        text-align: left;
+
+        a {
+          &:hover, &.active {
+            color: white;
+          }
+
+          &:before {
+            position: absolute;
+            content: "";
+            width: 16px;
+            height: 25px;
+            top: 24%;
+            left: -25px;
+            background-image: url("/img/task-bullet.png");
+            background-size: cover;
+          }
+
+          &.complete:before {
+            background-image: url("/img/task-bullet-completed.png");
+          }
+        }
+      }
+
+      .objectives {
+        position: relative;
+        display: inline-block;
+        margin-top: 20px;
+        text-transform: uppercase;
+
+        &:before {
+          position: absolute;
+          content: "";
+          width: 384px;
+          height: 36px;
+          top: 4px;
+          left: -400px;
+          background-image: url("/img/objective-flourish.png");
+          background-size: cover;
+        }
+
+        &:after {
+          position: absolute;
+          content: "";
+          width: 384px;
+          height: 36px;
+          top: 4px;
+          right: -400px;
+          background-image: url("/img/objective-flourish.png");
+          background-size: cover;
+          transform: rotateY(180deg);
+        }
+      }
+
+      .quest-list, .task-list {
+        text-align: left;
+        padding-left: 30px;
+        color: rgba(255,255,255, .4);
+
+        .quest-entry, .task-entry {
+          display: grid;
+          position: relative;
+          margin-left: 25px;
+          grid-template-areas: "title actions";
+          grid-template-columns: 30% auto;
+          margin-top: 10px;
+
+          &.active, &:hover {
+            color: white;
+          }
+
+          &.active:before {
+            position: absolute;
+            content: "";
+            width: 23px;
+            height: 23.5px;
+            top: 10px;
+            left: -25px;
+            background: url("/img/task-pointer.png");
+            background-size: cover;
+            transform: rotateY(180deg);
+          }
+
+          .title {
+            grid-area: title;
+            text-transform: uppercase;
+            padding-right: 50px;
+          }
+
+          .actions {
+            grid-area: actions;
+          }
+        }
+      }
+
+      .quest-edit, .task-edit {
+        .actions {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+

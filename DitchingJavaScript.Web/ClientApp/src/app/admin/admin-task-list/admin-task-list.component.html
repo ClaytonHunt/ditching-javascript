@@ -1,0 +1,12 @@
+<div class="task-list">
+  <div class="task-entry" *ngFor="let t of questState.currentQuest.tasks" [class.active]="questState.isCurrentTask(t)">
+    <span class="title">{{t.name}}</span>
+    <div class="actions">
+      <button type="button" (click)="questState.selectTask(t)">Edit</button>
+      <button type="button" (click)="questState.deleteTask(t)">Delete</button>
+    </div>
+  </div>
+  <div class="actions">
+    <button type="button" (click)="createNewTask()">New Task</button>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="quest-edit">
+  <h2>Quest Details</h2>
+  <div class="input-group">
+    <label>Name</label>
+    <input type="text" [(ngModel)]="questState.currentQuest.name" />
+  </div>
+  <div class="input-group">
+    <label>Description</label>
+    <textarea type="text" [(ngModel)]="questState.currentQuest.description"></textarea>
+  </div>
+  <div class="actions">
+    <button type="button" (click)="questState.saveQuest(questState.currentQuest)">Save</button>
+    <button type="button" (click)="questState.selectQuest(questState.currentQuest)">Reset</button>
+  </div>
+</div>

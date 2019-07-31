@@ -1,0 +1,20 @@
+<div class="left-nav">
+  <ul>
+    <li>
+      <a class="active working">Manage Quests</a>
+    </li>
+  </ul>
+</div>
+<div class="content">
+  <h1>Manage Quests</h1>
+  <admin-quest-list></admin-quest-list>
+  <ng-container *ngIf="questState.currentQuest">
+    <hr />
+    <admin-quest-edit></admin-quest-edit>
+    <admin-task-list></admin-task-list>
+    <ng-container *ngIf="questState.currentTask">
+      <hr/>
+      <admin-task-edit></admin-task-edit>
+    </ng-container>
+  </ng-container>
+</div>
