@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DitchingJavaScript.Web", "DitchingJavaScript.Web\DitchingJavaScript.Web.csproj", "{1E120BB1-3A65-4045-A749-FC80836CA3DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DitchingJavaScript.Web", "DitchingJavaScript.Web\DitchingJavaScript.Web.csproj", "{1E120BB1-3A65-4045-A749-FC80836CA3DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DitchingJavaScript.Data", "DitchingJavaScript.Data\DitchingJavaScript.Data.csproj", "{9F06D0FD-B435-4490-A688-1C2031CC459C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DitchingJavaScript.Data", "DitchingJavaScript.Data\DitchingJavaScript.Data.csproj", "{9F06D0FD-B435-4490-A688-1C2031CC459C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DitchingJavaScript.Shared", "DitchingJavaScript.Shared\DitchingJavaScript.Shared.csproj", "{92F7CEB9-7EAB-49A7-8E72-F04ED7DF53CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DitchingJavaScript.Shared", "DitchingJavaScript.Shared\DitchingJavaScript.Shared.csproj", "{92F7CEB9-7EAB-49A7-8E72-F04ED7DF53CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
