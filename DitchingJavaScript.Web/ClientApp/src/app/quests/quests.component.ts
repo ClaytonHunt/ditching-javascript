@@ -4,7 +4,7 @@ import {QuestLine  } from "../../models/quest-line";
 import {QuestState } from "../services/questState";
 
 @Component({
-    selector: 'quests-element',
+    selector: 'quests',
     templateUrl: './quests.component.html'
   })
 export class QuestsComponent implements OnInit, OnDestroy {

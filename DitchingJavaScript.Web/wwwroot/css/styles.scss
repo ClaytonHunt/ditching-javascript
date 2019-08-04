@@ -1,42 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
-a, a:visited {
-  position: relative;
-  font-size: 36px;
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-
-  &.active, &:hover {
-    color: white;
-    text-decoration: none;
-  }
-
-  &.active {
-    &:before {
-      position: absolute;
-      content: "";
-      width: 28px;
-      height: 29px;
-      top: 8px;
-      left: -50px;
-      background-image: url("/img/task-pointer.png");
-      background-size: cover;
-    }
-
-    &:after {
-      position: absolute;
-      content: "";
-      width: 28px;
-      height: 29px;
-      top: 8px;
-      right: -50px;
-      background-image: url("/img/task-pointer.png");
-      background-size: cover;
-      transform: rotateY(180deg);
-    }
-  }
-}
+/*a {
+  color: #0366d6;
+}*/
 
 code {
   color: #E01A76;
@@ -148,6 +115,43 @@ ul {
         margin-right: 55px;
       }
     }
+
+    a, a:visited {
+      position: relative;
+      font-size: 36px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+
+      &.active, &:hover {
+        color: white;
+        text-decoration: none;
+      }
+
+      &.active {
+        &:before {
+          position: absolute;
+          content: "";
+          width: 28px;
+          height: 29px;
+          top: 8px;
+          left: -50px;
+          background-image: url("/img/task-pointer.png");
+          background-size: cover;
+        }
+
+        &:after {
+          position: absolute;
+          content: "";
+          width: 28px;
+          height: 29px;
+          top: 8px;
+          right: -50px;
+          background-image: url("/img/task-pointer.png");
+          background-size: cover;
+          transform: rotateY(180deg);
+        }
+      }
+    }
   }
 
   button {
@@ -203,7 +207,7 @@ ul {
     padding-left: 55px;
   }
 
-  main quests, main admin {
+  main quests-element, main admin-element {
     display: grid;
     grid-template-columns: 20% 80%;
     min-width: 1264px;

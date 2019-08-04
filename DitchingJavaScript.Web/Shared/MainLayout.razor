@@ -1,0 +1,24 @@
+﻿@inherits LayoutComponentBase
+
+<div class="background"></div>
+
+<div class="foreground">
+    <nav>
+        <ul>
+            <li>
+                <NavLink href="" Match="NavLinkMatch.All">
+                    Quests
+                </NavLink>                
+            </li>
+            <li>
+                <NavLink href="/admin" Match="NavLinkMatch.All">
+                    Admin
+                </NavLink>                
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        @Body
+    </main>
+</div>

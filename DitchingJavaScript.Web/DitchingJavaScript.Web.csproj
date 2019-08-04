@@ -31,6 +31,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\css\styles.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\src\app\admin\admin-quest-edit\admin-quest-edit.component.html" />
     <None Remove="ClientApp\src\app\admin\admin-quest-edit\admin-quest-edit.component.ts" />
     <None Remove="ClientApp\src\app\admin\admin-quest-list\admin-quest-list.component.html" />
@@ -54,7 +59,11 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
-    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="wwwroot\css\styles.scss" />
   </ItemGroup>
 
   <ItemGroup>
@@ -126,9 +135,9 @@
   </Target>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptTarget>ES2018</TypeScriptTarget>
     <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
-    <TypeScriptModuleKind />
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
     <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
     <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
