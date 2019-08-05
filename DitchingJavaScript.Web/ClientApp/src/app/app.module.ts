@@ -5,7 +5,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { QuestListingComponent } from "./quest-listing/quest-listing.component";
+import { ActiveQuestListingComponent } from "./active-quest-listing/active-quest-listing.component";
+import { CompletedQuestListingComponent } from "./completed-quest-listing/completed-quest-listing.component";
 import { TaskListingComponent } from "./task-listing/task-listing.component";
 import { QuestState } from "./services/questState";
 import { QuestsComponent } from "./quests/quests.component";
@@ -20,7 +21,8 @@ import { AdminTaskEditComponent } from "./admin/admin-task-edit/admin-task-edit.
     AppComponent,
     QuestsComponent,
     AdminComponent,
-    QuestListingComponent,
+    ActiveQuestListingComponent,
+    CompletedQuestListingComponent,
     TaskListingComponent,
     AdminQuestListComponent,
     AdminQuestEditComponent,
@@ -43,7 +45,8 @@ import { AdminTaskEditComponent } from "./admin/admin-task-edit/admin-task-edit.
   entryComponents: [
     QuestsComponent,
     AdminComponent,
-    QuestListingComponent,
+    ActiveQuestListingComponent,
+    CompletedQuestListingComponent,
     TaskListingComponent,
     AdminQuestListComponent,
     AdminQuestEditComponent,

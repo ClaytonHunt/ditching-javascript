@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\active-quest-listing\active-quest-listing.component.ts" />
     <None Remove="ClientApp\src\app\admin\admin-quest-edit\admin-quest-edit.component.html" />
     <None Remove="ClientApp\src\app\admin\admin-quest-edit\admin-quest-edit.component.ts" />
     <None Remove="ClientApp\src\app\admin\admin-quest-list\admin-quest-list.component.html" />
@@ -46,7 +47,7 @@
     <None Remove="ClientApp\src\app\admin\admin-task-list\admin-task-list.component.ts" />
     <None Remove="ClientApp\src\app\admin\admin.component.html" />
     <None Remove="ClientApp\src\app\admin\admin.component.ts" />
-    <None Remove="ClientApp\src\app\quest-listing\quest-listing.component.ts" />
+    <None Remove="ClientApp\src\app\completed-quest-listing\completed-quest-listing.component.ts" />
     <None Remove="ClientApp\src\app\quests\quests.component.html" />
     <None Remove="ClientApp\src\app\quests\quests.component.ts" />
     <None Remove="ClientApp\src\app\services\questState.ts" />
@@ -92,7 +93,10 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\admin\admin.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\quest-listing\quest-listing.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\completed-quest-listing\completed-quest-listing.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\active-quest-listing\active-quest-listing.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\quests\quests.component.html">
       <SubType>Code</SubType>
     </TypeScriptCompile>

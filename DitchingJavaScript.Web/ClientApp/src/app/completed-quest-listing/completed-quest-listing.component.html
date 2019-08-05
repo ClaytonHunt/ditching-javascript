@@ -1,0 +1,10 @@
+<ul >
+  <li *ngFor="let quest of quests">
+    <a [class.active]="questState.isCurrentQuest(quest)"
+       [class.working]="quest.isBeingWorked"
+       (mouseover)="questState.selectQuest(quest)"
+       (click)="questState.toggleQuest(quest)">
+      {{ quest.name }}
+    </a>
+  </li>
+</ul>

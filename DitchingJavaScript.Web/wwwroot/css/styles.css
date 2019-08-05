@@ -160,7 +160,7 @@ ul {
     text-align: left;
     padding: 15px;
     padding-left: 55px; }
-  .foreground main quests-element, .foreground main admin-element {
+  .foreground main, .foreground main admin-element {
     display: grid;
     grid-template-columns: 20% 80%;
     min-width: 1264px;
@@ -172,7 +172,7 @@ ul {
     box-shadow: 3px 3px 0 0 rgba(255, 255, 255, 0.7) inset, -3px -3px 0 0 rgba(255, 255, 255, 0.7) inset;
     color: white;
     font-size: 36px; }
-    .foreground main quests-element h1, .foreground main quests-element h2, .foreground main admin-element h1, .foreground main admin-element h2 {
+    .foreground main h1, .foreground main h2, .foreground main admin-element h1, .foreground main admin-element h2 {
       display: inline-block;
       position: relative;
       margin-left: 160px;
@@ -180,7 +180,7 @@ ul {
       font-size: 40px;
       font-weight: normal;
       text-transform: uppercase; }
-      .foreground main quests-element h1:before, .foreground main quests-element h2:before, .foreground main admin-element h1:before, .foreground main admin-element h2:before {
+      .foreground main h1:before, .foreground main h2:before, .foreground main admin-element h1:before, .foreground main admin-element h2:before {
         position: absolute;
         content: "";
         top: -10px;
@@ -189,7 +189,7 @@ ul {
         height: 60px;
         background-image: url("/img/title-flourish.png");
         background-size: cover; }
-      .foreground main quests-element h1:after, .foreground main quests-element h2:after, .foreground main admin-element h1:after, .foreground main admin-element h2:after {
+      .foreground main h1:after, .foreground main h2:after, .foreground main admin-element h1:after, .foreground main admin-element h2:after {
         position: absolute;
         content: "";
         top: -10px;
@@ -199,11 +199,11 @@ ul {
         background-image: url("/img/title-flourish.png");
         background-size: cover;
         transform: rotateY(180deg); }
-    .foreground main quests-element h2:before, .foreground main quests-element h2:after, .foreground main admin-element h2:before, .foreground main admin-element h2:after {
+    .foreground main h2:before, .foreground main h2:after, .foreground main admin-element h2:before, .foreground main admin-element h2:after {
       top: 3px;
       height: 39px;
       background-image: url("/img/title-flourish-2.png"); }
-    .foreground main quests-element .left-nav, .foreground main admin-element .left-nav {
+    .foreground main .left-nav, .foreground main admin-element .left-nav {
       min-width: 224px;
       border-right: 3px solid gray;
       padding: 10px;
@@ -212,16 +212,16 @@ ul {
       text-transform: uppercase;
       padding-left: 20px;
       padding-right: 20px; }
-      .foreground main quests-element .left-nav a, .foreground main admin-element .left-nav a {
+      .foreground main .left-nav a, .foreground main admin-element .left-nav a {
         position: relative;
         display: inline-block;
         color: gray;
         margin-right: 25px; }
-        .foreground main quests-element .left-nav a:hover, .foreground main quests-element .left-nav a.active, .foreground main admin-element .left-nav a:hover, .foreground main admin-element .left-nav a.active {
+        .foreground main .left-nav a:hover, .foreground main .left-nav a.active, .foreground main admin-element .left-nav a:hover, .foreground main admin-element .left-nav a.active {
           color: white; }
-        .foreground main quests-element .left-nav a.working:hover:after, .foreground main quests-element .left-nav a.working.active:after, .foreground main admin-element .left-nav a.working:hover:after, .foreground main admin-element .left-nav a.working.active:after {
+        .foreground main .left-nav a.working:hover:after, .foreground main .left-nav a.working.active:after, .foreground main admin-element .left-nav a.working:hover:after, .foreground main admin-element .left-nav a.working.active:after {
           filter: opacity(1); }
-        .foreground main quests-element .left-nav a.working:after, .foreground main admin-element .left-nav a.working:after {
+        .foreground main .left-nav a.working:after, .foreground main admin-element .left-nav a.working:after {
           position: absolute;
           content: "";
           width: 23px;
@@ -231,18 +231,18 @@ ul {
           background-image: url("/img/task-pointer.png");
           background-size: cover;
           filter: opacity(0.5); }
-      .foreground main quests-element .left-nav ul, .foreground main admin-element .left-nav ul {
+      .foreground main .left-nav ul, .foreground main admin-element .left-nav ul {
         width: 100%; }
-        .foreground main quests-element .left-nav ul li, .foreground main admin-element .left-nav ul li {
+        .foreground main .left-nav ul li, .foreground main admin-element .left-nav ul li {
           text-align: end;
           padding-right: 30px; }
-      .foreground main quests-element .left-nav .completed-quests a, .foreground main admin-element .left-nav .completed-quests a {
+      .foreground main .left-nav .completed-quests a, .foreground main admin-element .left-nav .completed-quests a {
         color: rgba(255, 255, 255, 0.4); }
-        .foreground main quests-element .left-nav .completed-quests a:hover, .foreground main quests-element .left-nav .completed-quests a.active, .foreground main admin-element .left-nav .completed-quests a:hover, .foreground main admin-element .left-nav .completed-quests a.active {
+        .foreground main .left-nav .completed-quests a:hover, .foreground main .left-nav .completed-quests a.active, .foreground main admin-element .left-nav .completed-quests a:hover, .foreground main admin-element .left-nav .completed-quests a.active {
           color: rgba(255, 255, 255, 0.6); }
-        .foreground main quests-element .left-nav .completed-quests a:after, .foreground main admin-element .left-nav .completed-quests a:after {
+        .foreground main .left-nav .completed-quests a:after, .foreground main admin-element .left-nav .completed-quests a:after {
           display: none; }
-    .foreground main quests-element .content, .foreground main admin-element .content {
+    .foreground main .content, .foreground main admin-element .content {
       min-width: 984px;
       border-left: 3px solid gray;
       padding: 10px;
@@ -250,12 +250,12 @@ ul {
       text-align: center;
       overflow-x: hidden;
       color: rgba(255, 255, 255, 0.7); }
-      .foreground main quests-element .content ul li, .foreground main admin-element .content ul li {
+      .foreground main .content ul li, .foreground main admin-element .content ul li {
         position: relative;
         text-align: left; }
-        .foreground main quests-element .content ul li a:hover, .foreground main quests-element .content ul li a.active, .foreground main admin-element .content ul li a:hover, .foreground main admin-element .content ul li a.active {
+        .foreground main .content ul li a:hover, .foreground main .content ul li a.active, .foreground main admin-element .content ul li a:hover, .foreground main admin-element .content ul li a.active {
           color: white; }
-        .foreground main quests-element .content ul li a:before, .foreground main admin-element .content ul li a:before {
+        .foreground main .content ul li a:before, .foreground main admin-element .content ul li a:before {
           position: absolute;
           content: "";
           width: 16px;
@@ -264,14 +264,14 @@ ul {
           left: -25px;
           background-image: url("/img/task-bullet.png");
           background-size: cover; }
-        .foreground main quests-element .content ul li a.complete:before, .foreground main admin-element .content ul li a.complete:before {
+        .foreground main .content ul li a.complete:before, .foreground main admin-element .content ul li a.complete:before {
           background-image: url("/img/task-bullet-completed.png"); }
-      .foreground main quests-element .content .objectives, .foreground main admin-element .content .objectives {
+      .foreground main .content .objectives, .foreground main admin-element .content .objectives {
         position: relative;
         display: inline-block;
         margin-top: 20px;
         text-transform: uppercase; }
-        .foreground main quests-element .content .objectives:before, .foreground main admin-element .content .objectives:before {
+        .foreground main .content .objectives:before, .foreground main admin-element .content .objectives:before {
           position: absolute;
           content: "";
           width: 384px;
@@ -280,7 +280,7 @@ ul {
           left: -400px;
           background-image: url("/img/objective-flourish.png");
           background-size: cover; }
-        .foreground main quests-element .content .objectives:after, .foreground main admin-element .content .objectives:after {
+        .foreground main .content .objectives:after, .foreground main admin-element .content .objectives:after {
           position: absolute;
           content: "";
           width: 384px;
@@ -290,20 +290,20 @@ ul {
           background-image: url("/img/objective-flourish.png");
           background-size: cover;
           transform: rotateY(180deg); }
-      .foreground main quests-element .content .quest-list, .foreground main quests-element .content .task-list, .foreground main admin-element .content .quest-list, .foreground main admin-element .content .task-list {
+      .foreground main .content .quest-list, .foreground main .content .task-list, .foreground main admin-element .content .quest-list, .foreground main admin-element .content .task-list {
         text-align: left;
         padding-left: 30px;
         color: rgba(255, 255, 255, 0.4); }
-        .foreground main quests-element .content .quest-list .quest-entry, .foreground main quests-element .content .quest-list .task-entry, .foreground main quests-element .content .task-list .quest-entry, .foreground main quests-element .content .task-list .task-entry, .foreground main admin-element .content .quest-list .quest-entry, .foreground main admin-element .content .quest-list .task-entry, .foreground main admin-element .content .task-list .quest-entry, .foreground main admin-element .content .task-list .task-entry {
+        .foreground main .content .quest-list .quest-entry, .foreground main .content .quest-list .task-entry, .foreground main .content .task-list .quest-entry, .foreground main .content .task-list .task-entry, .foreground main admin-element .content .quest-list .quest-entry, .foreground main admin-element .content .quest-list .task-entry, .foreground main admin-element .content .task-list .quest-entry, .foreground main admin-element .content .task-list .task-entry {
           display: grid;
           position: relative;
           margin-left: 25px;
           grid-template-areas: "title actions";
           grid-template-columns: 30% auto;
           margin-top: 10px; }
-          .foreground main quests-element .content .quest-list .quest-entry.active, .foreground main quests-element .content .quest-list .quest-entry:hover, .foreground main quests-element .content .quest-list .task-entry.active, .foreground main quests-element .content .quest-list .task-entry:hover, .foreground main quests-element .content .task-list .quest-entry.active, .foreground main quests-element .content .task-list .quest-entry:hover, .foreground main quests-element .content .task-list .task-entry.active, .foreground main quests-element .content .task-list .task-entry:hover, .foreground main admin-element .content .quest-list .quest-entry.active, .foreground main admin-element .content .quest-list .quest-entry:hover, .foreground main admin-element .content .quest-list .task-entry.active, .foreground main admin-element .content .quest-list .task-entry:hover, .foreground main admin-element .content .task-list .quest-entry.active, .foreground main admin-element .content .task-list .quest-entry:hover, .foreground main admin-element .content .task-list .task-entry.active, .foreground main admin-element .content .task-list .task-entry:hover {
+          .foreground main .content .quest-list .quest-entry.active, .foreground main .content .quest-list .quest-entry:hover, .foreground main .content .quest-list .task-entry.active, .foreground main .content .quest-list .task-entry:hover, .foreground main .content .task-list .quest-entry.active, .foreground main .content .task-list .quest-entry:hover, .foreground main .content .task-list .task-entry.active, .foreground main .content .task-list .task-entry:hover, .foreground main admin-element .content .quest-list .quest-entry.active, .foreground main admin-element .content .quest-list .quest-entry:hover, .foreground main admin-element .content .quest-list .task-entry.active, .foreground main admin-element .content .quest-list .task-entry:hover, .foreground main admin-element .content .task-list .quest-entry.active, .foreground main admin-element .content .task-list .quest-entry:hover, .foreground main admin-element .content .task-list .task-entry.active, .foreground main admin-element .content .task-list .task-entry:hover {
             color: white; }
-          .foreground main quests-element .content .quest-list .quest-entry.active:before, .foreground main quests-element .content .quest-list .task-entry.active:before, .foreground main quests-element .content .task-list .quest-entry.active:before, .foreground main quests-element .content .task-list .task-entry.active:before, .foreground main admin-element .content .quest-list .quest-entry.active:before, .foreground main admin-element .content .quest-list .task-entry.active:before, .foreground main admin-element .content .task-list .quest-entry.active:before, .foreground main admin-element .content .task-list .task-entry.active:before {
+          .foreground main .content .quest-list .quest-entry.active:before, .foreground main .content .quest-list .task-entry.active:before, .foreground main .content .task-list .quest-entry.active:before, .foreground main .content .task-list .task-entry.active:before, .foreground main admin-element .content .quest-list .quest-entry.active:before, .foreground main admin-element .content .quest-list .task-entry.active:before, .foreground main admin-element .content .task-list .quest-entry.active:before, .foreground main admin-element .content .task-list .task-entry.active:before {
             position: absolute;
             content: "";
             width: 23px;
@@ -313,11 +313,11 @@ ul {
             background: url("/img/task-pointer.png");
             background-size: cover;
             transform: rotateY(180deg); }
-          .foreground main quests-element .content .quest-list .quest-entry .title, .foreground main quests-element .content .quest-list .task-entry .title, .foreground main quests-element .content .task-list .quest-entry .title, .foreground main quests-element .content .task-list .task-entry .title, .foreground main admin-element .content .quest-list .quest-entry .title, .foreground main admin-element .content .quest-list .task-entry .title, .foreground main admin-element .content .task-list .quest-entry .title, .foreground main admin-element .content .task-list .task-entry .title {
+          .foreground main .content .quest-list .quest-entry .title, .foreground main .content .quest-list .task-entry .title, .foreground main .content .task-list .quest-entry .title, .foreground main .content .task-list .task-entry .title, .foreground main admin-element .content .quest-list .quest-entry .title, .foreground main admin-element .content .quest-list .task-entry .title, .foreground main admin-element .content .task-list .quest-entry .title, .foreground main admin-element .content .task-list .task-entry .title {
             grid-area: title;
             text-transform: uppercase;
             padding-right: 50px; }
-          .foreground main quests-element .content .quest-list .quest-entry .actions, .foreground main quests-element .content .quest-list .task-entry .actions, .foreground main quests-element .content .task-list .quest-entry .actions, .foreground main quests-element .content .task-list .task-entry .actions, .foreground main admin-element .content .quest-list .quest-entry .actions, .foreground main admin-element .content .quest-list .task-entry .actions, .foreground main admin-element .content .task-list .quest-entry .actions, .foreground main admin-element .content .task-list .task-entry .actions {
+          .foreground main .content .quest-list .quest-entry .actions, .foreground main .content .quest-list .task-entry .actions, .foreground main .content .task-list .quest-entry .actions, .foreground main .content .task-list .task-entry .actions, .foreground main admin-element .content .quest-list .quest-entry .actions, .foreground main admin-element .content .quest-list .task-entry .actions, .foreground main admin-element .content .task-list .quest-entry .actions, .foreground main admin-element .content .task-list .task-entry .actions {
             grid-area: actions; }
-      .foreground main quests-element .content .quest-edit .actions, .foreground main quests-element .content .task-edit .actions, .foreground main admin-element .content .quest-edit .actions, .foreground main admin-element .content .task-edit .actions {
+      .foreground main .content .quest-edit .actions, .foreground main .content .task-edit .actions, .foreground main admin-element .content .quest-edit .actions, .foreground main admin-element .content .task-edit .actions {
         text-align: right; }

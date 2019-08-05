@@ -1,5 +1,10 @@
+using System;
+using System.Linq;
+using System.Net.Http;
 using DitchingJavaScript.Data;
+using DitchingJavaScript.Web.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -25,6 +30,21 @@ namespace DitchingJavaScript.Web
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
+            // Server Side Blazor doesn't register HttpClient by default
+            if (services.All(x => x.ServiceType != typeof(HttpClient)))
+            {
+                // Setup HttpClient for server side in a client side compatible fashion
+                services.AddScoped(s =>
+                {
+                    // Creating the URI helper needs to wait until the JS Runtime is initialized, so defer it.
+                    var uriHelper = s.GetRequiredService<IUriHelper>();
+                    return new HttpClient
+                    {
+                        BaseAddress = new Uri(uriHelper.GetBaseUri())
+                    };
+                });
+            }
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -32,6 +52,8 @@ namespace DitchingJavaScript.Web
             });
 
             services.AddQuestData();
+
+            services.AddTransient<QuestState>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

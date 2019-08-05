@@ -1,7 +1,113 @@
 ﻿@page "/"
+@inject QuestState QuestState
 
-<quests-element></quests-element>
+<div class="left-nav">
+    <div class="active-quests">
+        <active-quest-listing-element></active-quest-listing-element>
+    </div>
+    <hr />
+    <div class="completed-quests">
+        <completed-quest-listing-element></completed-quest-listing-element>
+    </div>
+</div>
+
+<div class="content">
+    <task-listing-element></task-listing-element>
+</div>
 
 @code {
+    private static QuestState _questState = null;
 
+    protected override async Task OnInitAsync()
+    {
+        _questState = QuestState;
+    }
+
+    [JSInvokable]
+    public static Task<IEnumerable<QuestLine>> GetQuestsAsync()
+    {
+        return _questState == null ?
+            Task.FromException<IEnumerable<QuestLine>>(new Exception("QuestState Not Initialized")) :
+            Task.FromResult<IEnumerable<QuestLine>>(_questState.Quests);
+    }
+
+    [JSInvokable]
+    public static Task<IEnumerable<QuestTask>> SelectQuestAsync(QuestLine quest)
+    {
+        return _questState == null ?
+        Task.FromException<IEnumerable<QuestTask>>(new Exception("QuestState Not Initialized")) :
+        _questState.SelectQuest(quest);
+    }
+
+    [JSInvokable]
+    public static Task<int> CreateQuestAsync(QuestLine quest)
+    {
+        return _questState == null ?
+        Task.FromException<int>(new Exception("QuestState Not Initialized")) :
+        _questState.CreateQuest(quest);
+    }
+
+    [JSInvokable]
+    public static Task DeleteQuestAsync(QuestLine quest)
+    {
+        return _questState == null ?
+        Task.FromException(new Exception("QuestState Not Initialized")) :
+        _questState.DeleteQuest(quest);
+    }
+
+    [JSInvokable]
+    public static Task UpdateQuestAsync(QuestLine quest)
+    {
+        return _questState == null ?
+        Task.FromException(new Exception("QuestState Not Initialized")) :
+        _questState.UpdateQuest(quest);
+    }
+
+    [JSInvokable]
+    public static Task UpdateQuestStatusAsync(QuestLine quest)
+    {
+        return _questState == null ?
+        Task.FromException(new Exception("QuestState Not Initialized")) :
+        _questState.UpdateQuestStatus(quest);
+    }
+
+    [JSInvokable]
+    public static Task<int> CreateTaskAsync(QuestTask task)
+    {
+        return _questState == null ?
+        Task.FromException<int>(new Exception("QuestState Not Initialized")) :
+        _questState.CreateTask(task);
+    }
+
+    [JSInvokable]
+    public static Task UpdateTaskAsync(QuestTask task)
+    {
+        return _questState == null ?
+        Task.FromException(new Exception("QuestState Not Initialized")) :
+        _questState.UpdateTask(task);
+    }
+
+    [JSInvokable]
+    public static Task ToggleQuestAsync(QuestLine quest)
+    {
+        return _questState == null ?
+        Task.FromException(new Exception("QuestState Not Initialized")) :
+        _questState.ToggleQuest(quest);
+    }
+
+    [JSInvokable]
+    public static Task ToggleTaskAsync(QuestTask task)
+    {
+        return _questState == null ?
+        Task.FromException(new Exception("QuestState Not Initialized")) :
+        _questState.ToggleTask(task);
+    }
+
+    [JSInvokable]
+    public static Task DeleteTaskAsync(QuestTask task)
+    {
+        return _questState == null ?
+        Task.FromException(new Exception("QuestState Not Initialized")) :
+        _questState.DeleteTask(task);
+    }
 }

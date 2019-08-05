@@ -5,6 +5,8 @@ import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { QuestLine } from "../../models/quest-line";
 import { QuestTask } from "../../models/quest-task";
 
+declare var DotNet: any;
+
 @Injectable()
 export class QuestState {
   private _questClone: QuestLine;
@@ -25,10 +27,12 @@ export class QuestState {
   }
 
   public populateQuests(): void {
-    this._http.get("/quests").subscribe((response: any[]) => {
-      this._quests = response.map(i => new QuestLine(i));
-      this.updateQuests();
-    });
+    DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'GetQuestsAsync')
+      .then((response: any[]) => {
+        console.log(response);
+        this._quests = response.map(i => new QuestLine(i));
+        this.updateQuests();
+      });
   }
 
   public selectQuest(quest: QuestLine) {
@@ -40,9 +44,10 @@ export class QuestState {
     this._taskClone = null;
 
     if (this.currentQuest.tasks.length <= 0) {
-      this._http.get(`/quests/${quest.id}/tasks`).subscribe((response: any[]) => {
-        this.currentQuest.tasks = response.map(t => new QuestTask({ ...t, quest: { id: quest.id } }));
-      });
+      DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'SelectQuestAsync', quest)
+        .then((response: any[]) => {
+          this.currentQuest.tasks = response.map(t => new QuestTask({ ...t, quest: { id: quest.id } }));
+        });
     }
 
     this.stateHasChanged();
@@ -60,38 +65,39 @@ export class QuestState {
   }
 
   public deleteQuest(quest: QuestLine): void {
-    this._http.delete(`/quests/${quest.id}`).subscribe(() => {
-      if (quest === this.currentQuest) {
-        this.currentQuest = null;
-        this._questClone = null;
-      }
+    DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'DeleteQuestAsync', quest)
+      .then(() => {
+        if (quest === this.currentQuest) {
+          this.currentQuest = null;
+          this._questClone = null;
+        }
 
-      this._quests = this._quests.filter(x => x !== quest);
-      this.updateQuests();
+        this._quests = this._quests.filter(x => x !== quest);
+        this.updateQuests();
 
-      this.stateHasChanged();
-    });
+        this.stateHasChanged();
+      });
   }
 
   public updateQuestStatus(quest: QuestLine): void {
-    quest.isCompleted = !quest.isPermanent && quest.tasks.every(t => t.isCompleted);
-    quest.isBeingWorked = !quest.isCompleted && quest.isBeingWorked;
-
-    this._http.put(`/quests/${quest.id}`, quest).subscribe(() => {
-      this.stateHasChanged();
-    });
+    DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'UpdateQuestStatusAsync', quest)
+      .then(() => {
+        quest.isCompleted = !quest.isPermanent && quest.tasks.every(t => t.isCompleted);
+        quest.isBeingWorked = !quest.isCompleted && quest.isBeingWorked;
+        this.stateHasChanged();
+      });
   }
 
   public toggleQuest(quest: QuestLine): void {
-    quest.isBeingWorked = !quest.isBeingWorked;
-
     try {
-      this._http.put(`/quests/${quest.id}`, quest).subscribe(() => {
-        this.stateHasChanged();
-      });
+      DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'ToggleQuestAsync', quest)
+        .then(() => {
+          quest.isBeingWorked = !quest.isBeingWorked;
+          this.stateHasChanged();
+        });
     }
     catch (ex) {
-      quest.isBeingWorked = !quest.isBeingWorked;
+      // quest.isBeingWorked = !quest.isBeingWorked;
     }
   }
 
@@ -105,15 +111,15 @@ export class QuestState {
   }
 
   public toggleTask(task: QuestTask): void {
-    task.isCompleted = !task.isCompleted;
-
     try {
-      this._http.put(`/quests/${this.currentQuest.id}/tasks/${task.id}`, task).subscribe(() => {
-        this.updateQuestStatus(this.currentQuest);
-      });
+      DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'ToggleTaskAsync', task)
+        .then(() => {
+          task.isCompleted = !task.isCompleted;
+          this.updateQuestStatus(this.currentQuest);
+        });
     }
     catch (ex) {
-      task.isCompleted = !task.isCompleted;
+      // task.isCompleted = !task.isCompleted;
     }
   }
 
@@ -131,14 +137,15 @@ export class QuestState {
   }
 
   public deleteTask(task: QuestTask): void {
-    this._http.delete(`/quests/${this.currentQuest.id}/tasks/${task.id}`).subscribe(() => {
-      if (task === this.currentTask) {
-        this.currentTask = null;
-        this._taskClone = null;
-      }
+    DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'DeleteTaskAsync', task)
+      .then(() => {
+        if (task === this.currentTask) {
+          this.currentTask = null;
+          this._taskClone = null;
+        }
 
-      this.currentQuest.tasks = this.currentQuest.tasks.filter(x => x !== task);
-    });
+        this.currentQuest.tasks = this.currentQuest.tasks.filter(x => x !== task);
+      });
   }
 
   public isCurrentTask(task: QuestTask): boolean {
@@ -150,24 +157,27 @@ export class QuestState {
   }
 
   private createQuest(quest: QuestLine) {
-    this._http.post("/quests", quest).subscribe((id: number) => {
-      quest.id = id;
+    DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'CreateQuestAsync', quest)
+      .then((id: number) => {
+        quest.id = id;
 
-      this._questClone = quest;
+        this._questClone = quest;
 
-      this._quests.push(quest);
-      this.updateQuests();
-    });
+        this._quests.push(quest);
+        this.updateQuests();
+      });
   }
 
   private updateQuest(quest: QuestLine) {
-    this._http.put(`/quests/${quest.id}`, quest).subscribe(() => {
+    DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'UpdateQuestAsync', quest)
+      .then(() => {
       this._questClone = null;
     });
   }
 
   private createTask(task: QuestTask) {
-    this._http.post(`/quests/${this.currentQuest.id}/tasks`, task).subscribe((id: number) => {
+    DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'CreateTaskAsync', task)
+      .then((id: number) => {
       task.id = id;
 
       this.currentQuest.tasks.push(task);
@@ -175,7 +185,8 @@ export class QuestState {
   }
 
   private updateTask(task: QuestTask): void {
-    this._http.put(`/quests/${this.currentQuest.id}/tasks/${task.id}`, task).subscribe(() => {
+    DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'UpdateTaskAsync', task)
+      .then(() => {
       this._taskClone = null;
     });
   }

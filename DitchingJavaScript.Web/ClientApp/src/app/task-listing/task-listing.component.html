@@ -1,13 +1,13 @@
-<ng-container *ngIf="quest">
-  <h1>{{quest.name}}</h1>
+<ng-container *ngIf="questState.currentQuest">
+  <h1>{{questState.currentQuest.name}}</h1>
 
-  <ng-container *ngIf="quest.description">
-    <div>{{quest.description}}</div>
+  <ng-container *ngIf="questState.currentQuest.description">
+    <div>{{questState.currentQuest.description}}</div>
     <div class="objectives">Objectives</div>
   </ng-container>
 
 <ul>
-  <li *ngFor="let task of quest.tasks">
+  <li *ngFor="let task of questState.currentQuest.tasks">
     <a [class.active]="questState.isCurrentTask(task)"
        [class.complete]="task.isCompleted"
        (click)="questState.toggleTask(task)"

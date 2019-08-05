@@ -3,7 +3,8 @@ import { createCustomElement } from '@angular/elements';
 import { QuestsComponent } from './quests/quests.component';
 import { AdminTaskEditComponent } from "./admin/admin-task-edit/admin-task-edit.component";
 import { AdminComponent  } from "./admin/admin.component";
-import { QuestListingComponent  } from "./quest-listing/quest-listing.component";
+import { ActiveQuestListingComponent  } from "./active-quest-listing/active-quest-listing.component";
+import { CompletedQuestListingComponent  } from "./completed-quest-listing/completed-quest-listing.component";
 import { TaskListingComponent  } from "./task-listing/task-listing.component";
 import { AdminQuestListComponent } from "./admin/admin-quest-list/admin-quest-list.component";
 import { AdminQuestEditComponent  } from "./admin/admin-quest-edit/admin-quest-edit.component";
@@ -18,7 +19,8 @@ export class AppComponent {
     // Convert Components to Elements
     const questsElement = createCustomElement(QuestsComponent, { injector });
     const adminElement = createCustomElement(AdminComponent, { injector });
-    const questListingElement = createCustomElement(QuestListingComponent, { injector });
+    const activeQuestListingElement = createCustomElement(ActiveQuestListingComponent, { injector });
+    const completedQuestListingElement = createCustomElement(CompletedQuestListingComponent, { injector });
     const taskListingElement = createCustomElement(TaskListingComponent, { injector });
     const adminQuestListElement = createCustomElement(AdminQuestListComponent, { injector });
     const adminQuestEditElement = createCustomElement(AdminQuestEditComponent, { injector });
@@ -28,7 +30,8 @@ export class AppComponent {
     // Register the custom elements with the browser
     customElements.define('quests-element', questsElement);
     customElements.define('admin-element', adminElement);
-    customElements.define('quest-listing-element', questListingElement);
+    customElements.define('active-quest-listing-element', activeQuestListingElement);
+    customElements.define('completed-quest-listing-element', completedQuestListingElement);
     customElements.define('task-listing-element', taskListingElement);
     customElements.define('admin-quest-list-element', adminQuestListElement);
     customElements.define('admin-quest-edit-element', adminQuestEditElement);
