@@ -29,7 +29,6 @@ export class QuestState {
   public populateQuests(): void {
     DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'GetQuestsAsync')
       .then((response: any[]) => {
-        console.log(response);
         this._quests = response.map(i => new QuestLine(i));
         this.updateQuests();
       });
@@ -103,11 +102,14 @@ export class QuestState {
 
   public selectTask(task: QuestTask): void {
     this.clearUnsavedTaskChanges();
-
+    console.log("Selecting Task:", task.name);
     this.currentTask = task;
     this._taskClone = task.clone();
-
-    this.stateHasChanged();
+      
+    DotNet.invokeMethodAsync('DitchingJavaScript.Web', 'SelectTaskAsync', task)
+      .then(() => {
+        this.stateHasChanged();
+      });
   }
 
   public toggleTask(task: QuestTask): void {

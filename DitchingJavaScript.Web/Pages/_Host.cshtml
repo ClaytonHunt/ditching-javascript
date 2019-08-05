@@ -158,13 +158,12 @@
         </script>
     </app-root>
 
-    <app>@(await Html.RenderComponentAsync<App>())</app>
+<app>@(await Html.RenderComponentAsync<App>())</app>
+<script src="_framework/blazor.server.js"></script>
 
     <script type="text/javascript" src="runtime.js"></script>
     <script type="text/javascript" src="polyfills.js"></script>
     <script type="text/javascript" src="vendor.js"></script>
     <script type="text/javascript" src="main.js"></script>
-
-    <script src="_framework/blazor.server.js"></script>
 </body>
 </html>

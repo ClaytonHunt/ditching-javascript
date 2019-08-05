@@ -1,7 +1,42 @@
 ﻿@page "/admin"
+@implements IDisposable
+@inject QuestState QuestState
 
-<admin-element></admin-element>
+<div class="left-nav">
+    <ul>
+        <li>
+            <a class="active working">Manage Quests</a>
+        </li>
+    </ul>
+</div>
+<div class="content">
+    <h1>Manage Quests</h1>
+    <admin-quest-list-element></admin-quest-list-element>
+    @if (QuestState.CurrentQuest != null)
+    {
+        <hr />
+        <admin-quest-edit-element></admin-quest-edit-element>
+
+        <admin-task-list-element></admin-task-list-element>
+
+        @if (QuestState.CurrentTask != null)
+        {
+            <hr />
+            <admin-task-edit-element></admin-task-edit-element>
+        }
+    }
+</div>
 
 @code {
+    protected override void OnInit()
+    {
+        QuestState.OnStateChanged += OnStateChanged;
+    }
 
+    void IDisposable.Dispose()
+    {
+        QuestState.OnStateChanged -= OnStateChanged;
+    }
+
+    void OnStateChanged(object sender, EventArgs e) => StateHasChanged();
 }

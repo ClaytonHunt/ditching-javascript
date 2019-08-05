@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { QuestState } from '../../services/questState';
+import { Subscription } from "rxjs";
 
 @
   Component({
@@ -8,4 +9,15 @@ import { QuestState } from '../../services/questState';
   })
 export class AdminTaskEditComponent {
   constructor(public questState: QuestState) { }
+
+  private stateChanged: Subscription = null;
+  public async ngOnInit() {
+    this.stateChanged = this.questState.onStateChanged.subscribe(state => {
+      this.questState.updateQuests();
+    });
+  }
+
+  public async ngOnDestroy() {
+    this.stateChanged.unsubscribe();
+  }
 }

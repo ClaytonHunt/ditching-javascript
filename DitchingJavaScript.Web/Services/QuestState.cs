@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Resources;
 using System.Threading.Tasks;
 using DitchingJavaScript.Shared.Models;
 using Microsoft.AspNetCore.Components;
@@ -34,6 +35,7 @@ namespace DitchingJavaScript.Web.Services
         public async Task PopulateQuests()
         {
             Quests = await _http.GetJsonAsync<IList<QuestLine>>("/quests");
+            StateHasChanged();
         }
 
         public async Task<IEnumerable<QuestTask>> SelectQuest(QuestLine quest)
@@ -50,6 +52,8 @@ namespace DitchingJavaScript.Web.Services
                 CurrentQuest.Tasks = await _http.GetJsonAsync<IList<QuestTask>>($"/quests/{quest.Id}/tasks");
             }
 
+            StateHasChanged();
+
             return CurrentQuest.Tasks;
         }
 
@@ -65,6 +69,8 @@ namespace DitchingJavaScript.Web.Services
             {
                 await UpdateQuest(quest);
             }
+
+            StateHasChanged();
         }
 
         public async Task DeleteQuest(QuestLine quest)
@@ -78,6 +84,8 @@ namespace DitchingJavaScript.Web.Services
             }
 
             Quests.Remove(quest);
+
+            StateHasChanged();
         }
 
         public async Task UpdateQuestStatus(QuestLine quest)
@@ -86,6 +94,8 @@ namespace DitchingJavaScript.Web.Services
             quest.IsBeingWorked = !quest.IsCompleted && quest.IsBeingWorked;
 
             await _http.PutJsonAsync($"/quests/{quest.Id}", quest);
+
+            StateHasChanged();
         }
 
         public async Task ToggleQuest(QuestLine quest)
@@ -100,6 +110,8 @@ namespace DitchingJavaScript.Web.Services
             {
                 quest.IsBeingWorked = !quest.IsBeingWorked;
             }
+
+            StateHasChanged();
         }
 
         public async Task SelectTask(QuestTask task)
@@ -108,6 +120,8 @@ namespace DitchingJavaScript.Web.Services
 
             CurrentTask = task;
             _taskClone = task.Clone();
+
+            StateHasChanged();
         }
 
         public async Task ToggleTask(QuestTask task)
@@ -123,6 +137,8 @@ namespace DitchingJavaScript.Web.Services
             {
                 task.IsCompleted = !task.IsCompleted;
             }
+
+            StateHasChanged();
         }
 
         public async Task SaveTask(QuestTask task)
@@ -139,6 +155,8 @@ namespace DitchingJavaScript.Web.Services
             }
 
             _taskClone = task.Clone();
+
+            StateHasChanged();
         }
 
         public async Task DeleteTask(QuestTask task)
@@ -176,6 +194,8 @@ namespace DitchingJavaScript.Web.Services
             await _http.PutJsonAsync($"/quests/{quest.Id}", quest);
 
             _questClone = null;
+
+            StateHasChanged();
         }
 
         public async Task<int> CreateTask(QuestTask task)
@@ -186,6 +206,8 @@ namespace DitchingJavaScript.Web.Services
 
             CurrentQuest.Tasks.Add(task);
 
+            StateHasChanged();
+
             return id;
         }
 
@@ -194,6 +216,8 @@ namespace DitchingJavaScript.Web.Services
             await _http.PutJsonAsync($"/quests/${CurrentQuest.Id}/tasks/${task.Id}", task);
 
             _taskClone = null;
+
+            StateHasChanged();
         }
 
         private void ClearUnsavedQuestChanges() {

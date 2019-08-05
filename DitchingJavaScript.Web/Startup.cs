@@ -53,7 +53,7 @@ namespace DitchingJavaScript.Web
 
             services.AddQuestData();
 
-            services.AddTransient<QuestState>();
+            services.AddScoped<QuestState>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
