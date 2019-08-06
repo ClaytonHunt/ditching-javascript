@@ -4,16 +4,16 @@
 
 <div class="left-nav">
     <div class="active-quests">
-        <active-quest-listing-element></active-quest-listing-element>
+        <QuestList Quests="@QuestState.Quests.Where(x => !x.IsCompleted).Reverse()"></QuestList>
     </div>
     <hr />
     <div class="completed-quests">
-        <completed-quest-listing-element></completed-quest-listing-element>
+        <QuestList Quests="@QuestState.Quests.Where(x => x.IsCompleted)"></QuestList>
     </div>
 </div>
 
 <div class="content">
-    <task-listing-element></task-listing-element>
+    <TaskList Quest="@QuestState.CurrentQuest"></TaskList>
 </div>
 
 @code {

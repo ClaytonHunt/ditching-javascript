@@ -102,7 +102,7 @@ export class QuestState {
 
   public selectTask(task: QuestTask): void {
     this.clearUnsavedTaskChanges();
-    console.log("Selecting Task:", task.name);
+
     this.currentTask = task;
     this._taskClone = task.clone();
       

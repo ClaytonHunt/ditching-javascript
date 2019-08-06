@@ -1,0 +1,30 @@
+﻿@inject  QuestState QuestState
+
+@if (Quest != null)
+{
+    <h1>@Quest.Name</h1>
+
+    if (Quest.Description != "")
+    {
+        <div>@Quest.Description</div>
+        <div class="objectives">Objectives</div>
+    }
+
+    <ul>
+        @foreach (var task in Quest.Tasks)
+        {
+            <li>
+
+                <a class="@(QuestState.IsCurrentTask(task) ? "active" : "") @(task.IsCompleted ? "complete" : "")"
+                   onclick="@(async () => await QuestState.ToggleTask(task))"
+                   onmouseover="@(() => QuestState.SelectTask(task))">
+                    @task.Name
+                </a>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    [Parameter] QuestLine Quest { get; set; }
+}
