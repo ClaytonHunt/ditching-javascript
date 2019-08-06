@@ -11,18 +11,18 @@
 </div>
 <div class="content">
     <h1>Manage Quests</h1>
-    <admin-quest-list-element></admin-quest-list-element>
+    <AdminQuestList></AdminQuestList>
     @if (QuestState.CurrentQuest != null)
     {
         <hr />
-        <admin-quest-edit-element></admin-quest-edit-element>
+        <AdminQuestEdit></AdminQuestEdit>
 
-        <admin-task-list-element></admin-task-list-element>
+        <AdminTaskList></AdminTaskList>
 
         @if (QuestState.CurrentTask != null)
         {
             <hr />
-            <admin-task-edit-element></admin-task-edit-element>
+            <AdminTaskEdit></AdminTaskEdit>
         }
     }
 </div>

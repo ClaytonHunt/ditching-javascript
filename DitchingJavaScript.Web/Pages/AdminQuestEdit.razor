@@ -1,0 +1,32 @@
+﻿@inject QuestState QuestState
+@implements IDisposable
+
+<div class="quest-edit">
+    <h2>Quest Details</h2>
+    <div class="input-group">
+        <label>Name</label>
+        <input type="text" @bind="QuestState.CurrentQuest.Name" />
+    </div>
+    <div class="input-group">
+        <label>Description</label>
+        <textarea type="text" @bind="QuestState.CurrentQuest.Description"></textarea>
+    </div>
+    <div class="actions">
+        <button type="button" @onclick="(async () => await QuestState.SaveQuest(QuestState.CurrentQuest))">Save</button>
+        <button type="button" @onclick="(async () => await QuestState.SelectQuest(QuestState.CurrentQuest))">Reset</button>
+    </div>
+</div>
+
+@code {
+    protected override void OnInit()
+    {
+        QuestState.OnStateChanged += OnStateChanged;
+    }
+
+    void IDisposable.Dispose()
+    {
+        QuestState.OnStateChanged -= OnStateChanged;
+    }
+
+    void OnStateChanged(object sender, EventArgs e) => StateHasChanged();
+}

@@ -45,12 +45,6 @@ namespace DitchingJavaScript.Web
                 });
             }
 
-            // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
-
             services.AddQuestData();
 
             services.AddScoped<QuestState>();
@@ -72,7 +66,6 @@ namespace DitchingJavaScript.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
 
@@ -82,19 +75,6 @@ namespace DitchingJavaScript.Web
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
-            });
-
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
             });
         }
     }

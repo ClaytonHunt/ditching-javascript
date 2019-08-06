@@ -1,0 +1,32 @@
+﻿@inject QuestState QuestState
+@implements IDisposable
+
+<div class="quest-list">
+    @foreach (var q in QuestState.Quests)
+    {
+        <div class="quest-entry @(QuestState.IsCurrentQuest(q) ? "active" : "")">
+            <span class="title">@q.Name</span>
+            <div class="actions">
+                <button type="button" onclick="@(async () => await QuestState.SelectQuest(q))">Edit</button>
+                <button type="button" onclick="@(async () => await QuestState.DeleteQuest(q))">Delete</button>
+            </div>
+        </div>
+    }
+    <div class="actions">
+        <button type="button" onclick="@(async () => await QuestState.SelectQuest(new QuestLine()))">New Quest</button>
+    </div>
+</div>
+
+@code {
+    protected override void OnInit()
+    {
+        QuestState.OnStateChanged += OnStateChanged;
+    }
+
+    void IDisposable.Dispose()
+    {
+        QuestState.OnStateChanged -= OnStateChanged;
+    }
+
+    void OnStateChanged(object sender, EventArgs e) => StateHasChanged();
+}

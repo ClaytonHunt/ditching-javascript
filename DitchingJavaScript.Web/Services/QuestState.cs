@@ -38,7 +38,7 @@ namespace DitchingJavaScript.Web.Services
             StateHasChanged();
         }
 
-        public async Task<IEnumerable<QuestTask>> SelectQuest(QuestLine quest)
+        public async Task SelectQuest(QuestLine quest)
         {
             ClearUnsavedQuestChanges();
 
@@ -53,8 +53,6 @@ namespace DitchingJavaScript.Web.Services
             }
 
             StateHasChanged();
-
-            return CurrentQuest.Tasks;
         }
 
         public async Task SaveQuest(QuestLine quest)
@@ -114,7 +112,7 @@ namespace DitchingJavaScript.Web.Services
             StateHasChanged();
         }
 
-        public async Task SelectTask(QuestTask task)
+        public void SelectTask(QuestTask task)
         {
             ClearUnsavedTaskChanges();
 
