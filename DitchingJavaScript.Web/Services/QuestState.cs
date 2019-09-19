@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Resources;
 using System.Threading.Tasks;
 using DitchingJavaScript.Shared.Models;
 using Microsoft.AspNetCore.Components;
