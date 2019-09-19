@@ -6,7 +6,7 @@ using DitchingJavaScript.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +39,8 @@ namespace DitchingJavaScript.Web
                 }
             });
 
+//            services.AddHttpClient();
+
             // Server Side Blazor doesn't register HttpClient by default
             if (services.All(x => x.ServiceType != typeof(HttpClient)))
             {
@@ -46,10 +48,10 @@ namespace DitchingJavaScript.Web
                 services.AddScoped(s =>
                 {
                     // Creating the URI helper needs to wait until the JS Runtime is initialized, so defer it.
-                    var uriHelper = s.GetRequiredService<IUriHelper>();
+                    var uriHelper = s.GetRequiredService<NavigationManager>();
                     return new HttpClient
                     {
-                        BaseAddress = new Uri(uriHelper.GetBaseUri())
+                        BaseAddress = new Uri(uriHelper.BaseUri)
                     };
                 });
             }
