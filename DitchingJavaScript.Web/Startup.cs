@@ -16,8 +16,11 @@ namespace DitchingJavaScript.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _env;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
+            _env = env;
             Configuration = configuration;
         }
 
@@ -28,7 +31,13 @@ namespace DitchingJavaScript.Web
         {
             services.AddControllers();
             services.AddRazorPages();
-            services.AddServerSideBlazor();
+            services.AddServerSideBlazor().AddCircuitOptions(o =>
+            {
+                if (_env.IsDevelopment()) //only add details when debugging
+                {
+                    o.DetailedErrors = true;
+                }
+            });
 
             // Server Side Blazor doesn't register HttpClient by default
             if (services.All(x => x.ServiceType != typeof(HttpClient)))
