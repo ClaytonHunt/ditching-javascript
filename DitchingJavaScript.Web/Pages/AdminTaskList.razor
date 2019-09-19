@@ -7,18 +7,18 @@
         <div class="task-entry @(QuestState.IsCurrentTask(t) ? "active" : "")">
             <span class="title">@t.Name</span>
             <div class="actions">
-                <button type="button" onclick="@(() => QuestState.SelectTask(t))">Edit</button>
-                <button type="button" onclick="@(() => QuestState.DeleteTask(t))">Delete</button>
+                <button type="button" @onclick="(() => QuestState.SelectTask(t))">Edit</button>
+                <button type="button" @onclick="(() => QuestState.DeleteTask(t))">Delete</button>
             </div>
         </div>
     }
     <div class="actions">
-        <button type="button" onclick="@(() => QuestState.SelectTask(new QuestTask()))">New Task</button>
+        <button type="button" @onclick="(() => QuestState.SelectTask(new QuestTask()))">New Task</button>
     </div>
 </div>
 
 @code {
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
         QuestState.OnStateChanged += OnStateChanged;
     }

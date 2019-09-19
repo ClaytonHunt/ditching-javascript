@@ -7,18 +7,18 @@
         <div class="quest-entry @(QuestState.IsCurrentQuest(q) ? "active" : "")">
             <span class="title">@q.Name</span>
             <div class="actions">
-                <button type="button" onclick="@(async () => await QuestState.SelectQuest(q))">Edit</button>
-                <button type="button" onclick="@(async () => await QuestState.DeleteQuest(q))">Delete</button>
+                <button type="button" @onclick="(async () => await QuestState.SelectQuest(q))">Edit</button>
+                <button type="button" @onclick="(async () => await QuestState.DeleteQuest(q))">Delete</button>
             </div>
         </div>
     }
     <div class="actions">
-        <button type="button" onclick="@(async () => await QuestState.SelectQuest(new QuestLine()))">New Quest</button>
+        <button type="button" @onclick="(async () => await QuestState.SelectQuest(new QuestLine()))">New Quest</button>
     </div>
 </div>
 
 @code {
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
         QuestState.OnStateChanged += OnStateChanged;
     }

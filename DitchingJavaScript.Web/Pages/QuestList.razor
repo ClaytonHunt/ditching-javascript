@@ -5,8 +5,8 @@
     {
         <li>
             <a class="@(QuestState.IsCurrentQuest(quest) ? "active" : "") @(quest.IsBeingWorked ? "working" : "")"
-               onmouseover="@(async () => await QuestState.SelectQuest(quest))"
-               onclick="@(async () => await QuestState.ToggleQuest(quest))">
+               @onmouseover="(async () => await QuestState.SelectQuest(quest))"
+               @onclick="(async () => await QuestState.ToggleQuest(quest))">
                 @quest.Name
             </a>
         </li>
@@ -16,5 +16,5 @@
 
 @code {
     [Parameter]
-    IEnumerable<QuestLine> Quests { get; set; } = new List<QuestLine>();
+    public IEnumerable<QuestLine> Quests { get; set; } = new List<QuestLine>();
 }

@@ -16,8 +16,8 @@
             <li>
 
                 <a class="@(QuestState.IsCurrentTask(task) ? "active" : "") @(task.IsCompleted ? "complete" : "")"
-                   onclick="@(async () => await QuestState.ToggleTask(task))"
-                   onmouseover="@(() => QuestState.SelectTask(task))">
+                   @onclick="(async () => await QuestState.ToggleTask(task))"
+                   @onmouseover="(() => QuestState.SelectTask(task))">
                     @task.Name
                 </a>
             </li>
@@ -26,5 +26,6 @@
 }
 
 @code {
-    [Parameter] QuestLine Quest { get; set; }
+    [Parameter] 
+    public QuestLine Quest { get; set; }
 }
